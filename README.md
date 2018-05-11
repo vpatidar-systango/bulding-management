@@ -12,41 +12,41 @@ The main functions of BMS include controlling, monitoring, and optimizing the bu
 3.Early identification of equipment failure.</br>
 4.It is connection of whole All tenant to the owner.</br>
 5.Early detection of problems or service work easy,Ease of information availability</br>
-6.Ease of information availability problem diagnostics.
-7.economy of maintenance and running costs (lighting, electricity, easy way to detect the damage and eliminate it, etc.)
-8.Computerized maintenance scheduling.
-9.Increased level of comfort and time saving.
-10.the value of the building increases.
+6.Ease of information availability problem diagnostics.</br>
+7.economy of maintenance and running costs (lighting, electricity, easy way to detect the damage and eliminate it, etc.)</br>
+8.Computerized maintenance scheduling.</br>
+9.Increased level of comfort and time saving.</br>
+10.the value of the building increases.<br>
 
 ## Users
-There are Three users of BMS
+There are Three users of BMS</br>
 1.Tenant </br>
 2.Admin(Building Manager)<br>
-3.SuperAdmin
+3.SuperAdmin</br>
 
 # Technichal Requirements: 
 
-## project-version: </br>
+## project-version:
   1.0.0
 
-## Running the tests: </br>
+## Running the tests:
   /projectfolderpath> npm start
 
-## Installation:</br> 
+## Installation:
   /projectfolderpath> npm install --save
 
-## Needs Of project: </br>
+## Needs Of project: 
 1.Express frameWork </br>
 2.hbs template Engine.
 
 ## DataBase:
 1.MongoDB using Mongoose(as a ORM).
 
-## Hosting Services: </br>
+## Hosting Services: 
 1.Google. </br>
 2.facebook. </br>
 
-## Auther:
+## Author:
  Arpit Kanodia
 
 
