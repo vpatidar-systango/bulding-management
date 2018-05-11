@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>home Page</title>
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="/css/style.css" >
+  <link rel="stylesheet" href="/css/navstyle.css" >
+</head>
+
+<body>
+  <br>
+    <ul>
+        <li>
+            <a class="active" href="/admin.inviteUser">Home</a>
+        </li>
+        <li>
+            <a href="/admin.AllUser">AllUser</a>
+        </li>
+        <li>
+            <a href="/admin.AdminProfile">Profile</a>
+        </li>
+        <li>
+            <a href="/admin.inviteUser">InviteUser</a>
+        </li>
+        <li>
+            <a href="/admin.BuildingDetails">BuildingDetails</a>
+        </li>
+        <li>
+            <a href="/changePassword">changePassword</a>
+        </li>
+
+        <li>
+            <a href="/logout">Logout</a>
+        </li>
+    </ul>
+
+
+  <div class="form">
+
+    <div id="signup">
+      <h1>Welcome Admin:</h1>
+
+      <form action="/admin.inviteUser" method="post">
+
+        <div class="field-wrap">
+          <label>
+            Name:
+            <span class="req">*</span>
+          </label>
+          <input type="text" required autocomplete="off" name="username" />
+          <span id="spanError" style="color:red">{{LoginError}} </span>
+
+        </div>
+
+
+        <div class="field-wrap">
+          <label>
+            Email Address
+            <span class="req">*</span>
+          </label>
+          <input type="text" required autocomplete="off" name="email" />
+          <span id="spanError" style="color:red">{{LoginError}} </span>
+
+        </div>
+
+        <button type="submit" class="button button-block" />Invite</button>
+
+        <span>{{token}} </span>
+      </form>
+
+    </div>
+    <!--login form Ended -->
+
+
+
+
+  </div>
+  <!--Signup form Ended -->
+
+
+
+  </div>
+  <!--form ended-->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="/js/index.js" type="text/javascript"></script>
+
+</body>
+
+</html>

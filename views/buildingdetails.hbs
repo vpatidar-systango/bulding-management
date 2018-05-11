@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign-Up/Login Form</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navstyle.css">
+
+</head>
+
+<body>
+     <br>
+    <ul>
+        <li>
+            <a class="active" href="/admin.inviteUser">Home</a>
+        </li>
+        <li>
+            <a href="/admin.AllUser">AllUser</a>
+        </li>
+        <li>
+            <a href="/admin.AdminProfile">Profile</a>
+        </li>
+        <li>
+            <a href="/admin.inviteUser">InviteUser</a>
+        </li>
+        <li>
+            <a href="/admin.BuildingDetails">BuildingDetails</a>
+        </li>
+        <li>
+            <a href="/changePassword">changePassword</a>
+        </li>
+
+        <li>
+            <a href="/logout">Logout</a>
+        </li>
+    </ul>
+
+
+    <div class="form">
+
+
+        <div id="login">
+            <h1>Welcome Admin!
+                <br> Fillup your Building Details</h1>
+
+            <form action="/admin.buildingdetails" method="post">
+
+                <div class="field-wrap">
+                    <label>
+                        Building Apartment Name:
+                        <span class="req">*</span>
+                    </label>
+                    <input type="text" required autocomplete="off" name="buildingname" />
+
+                </div>
+
+
+                <div class="field-wrap">
+                    <label>
+                        Address
+                        <span class="req">*</span>
+                    </label>
+                    <input type="text" required autocomplete="off" name="Address" />
+                </div>
+                <div class="field-wrap">
+                    <h3 style="color:white">City:&nbsp;&nbsp;&nbsp;
+                        <select name="city">
+                            <option value="Indore">Indore</option>
+                            <option value="ujjain">ujjain</option>
+                            <option value="Bhopal">Bhopal</option>
+                            <option value="Mhow">Mhow</option>
+                        </select>&nbsp;&nbsp;&nbsp; State:&nbsp;&nbsp;&nbsp;
+                        <select name="state">
+                            <option value="MadhyaPradesh">MadhyaPradesh</option>
+                            <option value="Rajisthan">Rajisthan</option>
+                            <option value="U.P">U.P</option>
+                            <option value="Maharastra">Maharastra</option>
+                        </select>
+
+                </div>
+
+
+                <p class="forgot">
+                    <a href="/addUser">Skip>>>>>>></a>
+                </p>
+
+                <button type="submit" class="button button-block" />Save</button>
+
+            </form>
+
+        </div>
+        <!--login form Ended -->
+
+
+    </div>
+    <!--form ended-->
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>

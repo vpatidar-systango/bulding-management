@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sign-Up/Login Form</title>
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <div class="form">
+
+    <div id="login">
+      <h1>Welcome Back!</h1>
+      <center>
+        <h3>
+          <span id="spanError" style="color:red">{{msgError }} </span>
+        </h3>
+      </center>
+      <br>
+      <form action="/login" method="post">
+
+        <div class="field-wrap">
+          <label>
+            Email Address
+            <span class="req">*</span>
+          </label>
+          <input type="text" required autocomplete="off" name="email" />
+          <span id="spanError" style="color:red">{{LoginError}} </span>
+
+
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Password
+            <span class="req">*</span>
+          </label>
+          <input type="password" required autocomplete="off" name="password" id="password" />
+          <span id="spanError" style="color:red">{{PassError}} </span>
+
+          <br>
+         </div>
+        {{!-- <div class="field-wrap">
+          <label>
+           confirm_password 
+            <span class="req">*</span>
+          </label>
+          <input type="password" required autocomplete="off" name="password" id="confirm_password" onkeyup="check()"/>
+          <span id="spanError" style="color:red">{{PassError}} </span>
+          <span id="message"> </span>
+
+
+          <br>
+        </div>  --}}
+
+
+        <button class="loginBtn loginBtn--facebook" onclick="window.location.href='/auth/facebook'">
+          Login with Facebook
+        </button>
+
+
+        <button class="loginBtn loginBtn--google" onclick="window.location.href='/auth/google'">
+          Login with Google
+        </button>
+        <br>
+        <br>
+
+
+    </div>
+    <p class="forgot">
+      <a href="/forgot">Forgot Password?</a>
+    </p>
+
+    <button type="submit" class="button button-block" />Log In</button>
+
+    </form>
+
+  </div>
+  <!--login form Ended -->
+
+  </div>
+  <!--form ended-->
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="/js/index.js"></script>
+   {{!-- <script>
+    var check = function () {
+      var password=document.getElementById('password').value;
+      var cpassword=document.getElementById('confirm_password').value;
+
+      if (password ==cpassword ) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = 'matching';
+      } else {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = 'not matching';
+      }
+    }
+  </script>  --}}
+</body>
+
+</html>

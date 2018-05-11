@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>reset</title>
+</head>
+{{!-- bgcolor="#008080" --}}
+<body>
+    <center>
+        <h1> Welcome User :</h1>
+    </center>
+    <form action="/admin.UserSignup" method="get">
+        <div>
+            <table align="center">
+                <tr>
+                    <td>
+                        <label>
+                            <h1>
+                                <marquee>
+                                    Please Click On the accept button for accepting My Request
+                                    And signup as a user
+                                </marquee>
+                            </h1>
+                        </label>
+                    </td>
+                    </tr>
+               </table>
+            <br>
+            <br>
+            <center>
+            <h4><p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+</h4> <br>
+                <button type="submit" class="button button-block" />Accept</button>
+            </center>
+
+        </div>
+    </form>
+    <!--form ended-->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script>
+        var query = window.location.pathname.split('/')[2];
+        // alert('query: ' + query);
+        $('#token').val(query);
+    </script>
+</body>
+
+</html>

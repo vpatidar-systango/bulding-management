@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>reset</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <button style="font-size:24px" onclick="window.location.href='/logout'">Logout</button>
+
+
+    <div class="form">
+        <h1> Reset Your Password :</h1>
+        <form action="/reset" method="post">
+
+            <div class="field-wrap">
+                <label>
+                    Write Your New Password here
+                    <span class="req">*</span>
+                </label>
+                <input type="text" required autocomplete="off" name="password" />
+
+            </div>
+            <div class="field-wrap">
+                <label>
+                    Confirm Your Password here
+                    <span class="req">*</span>
+                </label>
+                <input type="text" required autocomplete="off" name="email" />
+
+            </div>
+            <input type="hidden" id="token" name="token" />
+            <button type="submit" class="button button-block" />Log In</button>
+        </form>
+    </div>
+
+
+
+
+    <!--form ended-->
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+    <script>
+
+        var query = window.location.pathname.split('/')[2];
+       // alert('query: ' + query);
+        $('#token').val(query);
+    </script>
+</body>
+
+</html>
