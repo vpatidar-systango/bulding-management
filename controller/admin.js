@@ -26,10 +26,15 @@ module.exports = {
      *      render to the profile Page
      */
     AdminProfile: async function (req, res) {
-        var _id = req._passport.session.user;
-        var user = await User.findOne({ _id: _id });
-        console.log(user);
-        res.render('Profile', { user: user });
+        try{
+            var _id = req._passport.session.user;
+            var user = await User.findOne({ _id: _id });
+            console.log(user);
+            res.render('Profile', { user: user });
+        }catch(error){
+            console.log(error);
+        }
+      
     },
     /**
      * Method:updateProfile
@@ -40,6 +45,7 @@ module.exports = {
      *      render to the profile Page with the succcess msg
      */
     updateAProfile: async function (req, res) {
+        try{
         var _id = req._passport.session.user;
         var user = await User.findOne({ _id: _id });
         user.username = req.body.username;
@@ -52,6 +58,9 @@ module.exports = {
         // console.log("updated Sucessfully");
         var msg = "You Profile is updated Sucessfully"
         res.render('Profile', { user: user, msg: msg });
+    }catch(error){
+        console.log(error);
+    }
     },
     /**
      * Method:deleteUser
@@ -61,6 +70,7 @@ module.exports = {
      *      redirect to All UserPAge
      */
     deleteUser: async function (req, res) {
+        try{        
         var _id = req.params.id;
         // console.log(_id);
         var user = await User.findByIdAndRemove({ _id: _id });
@@ -70,6 +80,9 @@ module.exports = {
             console.log("Your User Deleted Successfully")
             res.redirect('/admin.AllUser')
         }
+    }catch(error){
+        console.log(error);
+    }
     },
      /**
      * Method:renderReInviteUserPage
@@ -79,6 +92,7 @@ module.exports = {
      * 2:if user is Active disable the textfilled and show erroe msg
      */
     renderReInviteUserPage: async function (req, res) {
+        try{
         var id = req.params.id;
         var user = await User.findById(id);
         if (user.status == "InActive") {
@@ -91,6 +105,9 @@ module.exports = {
             var msg = "This is Active User So, He is not ReInvite"
             res.render('ReInviteUser', { work: work, msg: msg });
         }
+    }catch(error){
+        console.log(error);
+    }
     },
      /**
      * Method:renderBuildingDetails

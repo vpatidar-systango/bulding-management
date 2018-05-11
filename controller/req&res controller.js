@@ -21,6 +21,7 @@ module.exports = {
      * case2:if Building details are not filled by Admin(only) then if render building details form
      */
     rederwelcomePage: async function (req, res) {
+        try{
         var id = req._passport.session.user;
        // console.log(id);
         var user = await User.findById(id);
@@ -48,6 +49,9 @@ module.exports = {
             res.redirect('/signup');
 
         }
+    }catch(error){
+            console.log(error);
+          }
     },
     /**
      * methode:renderCPassword
@@ -101,6 +105,7 @@ module.exports = {
      * task:get the current session id & update to the new password by its user
      */
       changePassword: async function (req, res) {
+          try{
         var id = req._passport.session.user;
         var user = await User.findById(id);
         user.password = user.encryptPassword(req.body.password);
@@ -116,5 +121,8 @@ module.exports = {
             var msg = "Your Password Hass Been Change SucessFully";
             res.render('changePassword', { msg: msg });
         }
+    }catch(error){
+        console.log(error);
+      }
     },
 }

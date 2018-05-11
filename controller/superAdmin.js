@@ -19,6 +19,7 @@ module.exports = {
          *      redirect to All AllAdmin page
          */
     deleteAdmin: async function (req, res) {
+        try{
         var _id = req.params.id;
         console.log(_id);
         var user = await User.findByIdAndRemove({ _id: _id });
@@ -28,6 +29,9 @@ module.exports = {
             console.log("Your Admin Deleted Successfully")
             res.render('AllAdmin');
         }
+    }catch(error){
+            console.log(error);
+          }
     },
     /**
      * Method:updateSProfile
@@ -38,6 +42,7 @@ module.exports = {
      *      render to the Sprofile Page with the succcess msg
      */
     updateSProfile: async function (req, res) {
+        try{
         var _id = req._passport.session.user;
 
         var user = await User.findOne({ _id: _id });
@@ -51,6 +56,9 @@ module.exports = {
         console.log("updated Sucessfully");
         var msg = "You Profile is updated Sucessfully"
         res.render('SProfile', { user: user, msg: msg });
+    }catch(error){
+        console.log(error);
+      }
     },
     /**
    * Method:AllAdmin
@@ -58,10 +66,14 @@ module.exports = {
    * task:find All User from Model and Render to the AllAdmin Page
    */
     AllAdmin: async function (req, res) {
+        try{
         // let users = await inviteAdmin.AllAdmin();
         let users = await User.find({ role: "Admin" });
         //console.log(users);
         res.render('AllAdmin', { users: users })
+    }catch(error){
+        console.log(error);
+      }
     },
     /**
      * Method:SuperAdminProfile
@@ -71,10 +83,14 @@ module.exports = {
      *      render to the Sprofile Page
      */
     SProfile: async function (req, res) {
+        try{
         var _id = req._passport.session.user;
         var user = await User.findOne({ _id: _id });
         // console.log(user);
         res.render('SProfile', { user: user });
+    }catch(error){
+        console.log(error);
+      }
     },
     /**
      * Method:renderReInviteAdminPage
@@ -84,6 +100,7 @@ module.exports = {
      * 2:if user is Active disable the textfilled and show erroe msg
      */
     renderReInviteAdminPage: async function (req, res) {
+        try{
         var id = req.params.id;
         var user = await User.findById(id);
         if (user.status == "InActive") {
@@ -97,6 +114,9 @@ module.exports = {
             res.render('ReInviteAdmin', { work: work, msg: msg });
 
         }
+    }catch(error){
+            console.log(error);
+          }
     },
 
 }

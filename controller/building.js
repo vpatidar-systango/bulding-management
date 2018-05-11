@@ -10,6 +10,7 @@ module.exports = {
      *      
      * */
     buildingdetails: async function (req, res) {
+        try{
         let body = req.body;
        // console.log("hii");
         var id = req._passport.session.user;
@@ -44,6 +45,9 @@ module.exports = {
             res.render('buildingdetails');
             return (null, NewBuilding);
         })
+    }catch(error){
+        console.log(error);
+    }
     }
 
 

@@ -10,6 +10,7 @@ module.exports = {
     *      render to the profile Page with the succcess msg
     */
     updateUProfile: async function (req, res) {
+        try{
         var _id = req._passport.session.user;
 
         var user = await User.findOne({ _id: _id });
@@ -27,6 +28,9 @@ module.exports = {
             var msg = "You Profile is updated Sucessfully"
             res.render('UProfile', { user: user, msg: msg });
         }
+    }catch(error){
+            console.log(error);
+          }
     },
     /**
      * Method:deleteUser
@@ -36,6 +40,7 @@ module.exports = {
      *      redirect to All UserPAge
      */
     deleteUser: async function (req, res) {
+        try{
         var _id = req.params.id;
         console.log(_id);
         var user = await User.findByIdAndRemove({ _id: _id });
@@ -45,6 +50,9 @@ module.exports = {
             console.log("Your Admin Deleted Successfully")
             res.redirect('/seeAllUser');
         }
+    }catch(error){
+            console.log(error);
+          }
     },
     /**
          * Method:UserProfile
@@ -54,9 +62,13 @@ module.exports = {
          *      render to the profile Page
          */
     UserProfile: async function (req, res) {
+        try{
         var _id = req._passport.session.user;
         var user = await User.findOne({ _id: _id });
         console.log(user);
         res.render('UProfile', { user: user });
+    }catch(error){
+        console.log(error);
+      }
     },
 }

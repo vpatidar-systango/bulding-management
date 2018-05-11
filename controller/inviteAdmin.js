@@ -21,6 +21,7 @@ module.exports = {
        *      render to the same Page
        */
   inviteAdmin: async function (req, res, next) {
+    try{
     /**
      * Generating Token  */
     let token = crypto.randomBytes(32).toString('hex');
@@ -70,6 +71,9 @@ module.exports = {
         res.redirect('/superAdmin.inviteAdmin');//redirect to the next
       }
     });
+  }catch(error){
+    console.log(error);
+}
 
   },//end function
 
@@ -81,6 +85,7 @@ module.exports = {
  *     otherwise render to the next page
  */
   InviteAdminGet: async function (req, res) {
+    try{
     var user = await User.findOne({ inviteToken: req.params.token, inviteTokenExpires: { $gt: Date.now() } })
     if (!user) {
       req.flash('error', 'Password reset token is invalid or has expired.');
@@ -94,6 +99,9 @@ module.exports = {
       user: req.user,
       token: req.params.token,
     });
+  }catch(error){
+    console.log(error);
+}
   },
   /**
    *   // Render Admin SignUp Page
@@ -110,6 +118,7 @@ module.exports = {
        *         */
 
   invitedAdminSignup: async function (req, res, next) {
+    try{
     var user = await User.findOne({ email: req.body.email })
     if (!user) {
       req.flash('error', 'Password reset token is invalid or has expired.');
@@ -128,6 +137,9 @@ module.exports = {
    // console.log("ye thisssssss");
 
     return (null, user);
+  }catch(error){
+    console.log(error);
+}
 
   },
   /**
@@ -141,7 +153,8 @@ module.exports = {
        *      render to the same Page
        */
   ReInviteAdmin: async function (req, res, next) {
-    /**
+    
+    try{/**
      * Generating Token  */
     let token = crypto.randomBytes(32).toString('hex');
     var body = req.body;
@@ -183,7 +196,10 @@ module.exports = {
         res.redirect('/ReInvite');
       }
     });
+  }catch(error){
+    console.log(error);
+  }
+  }//end function
 
-  },//end function
 
 }

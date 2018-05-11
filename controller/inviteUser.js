@@ -21,6 +21,7 @@ module.exports = {
        *      render to the same Page
        */
   inviteUser: async function (req, res, next) {
+    try{
     // * Generating Token  */
     let token = crypto.randomBytes(32).toString('hex');
     //console.log(token);
@@ -74,7 +75,9 @@ module.exports = {
 
       }
     });
-
+  }catch(error){
+    console.log(error);
+  }
   },//end function
   /**
  * Method:inviteGet
@@ -84,6 +87,7 @@ module.exports = {
  *     otherwise render to the next page
  */
   InviteGet: async function (req, res) {
+    try{
     var user = await User.findOne({ inviteToken: req.params.token, inviteTokenExpires: { $gt: Date.now() } })
 
     if (!user) {
@@ -99,6 +103,9 @@ module.exports = {
       user: req.user,
       token: req.params.token,
     });
+  }catch(error){
+      console.log(error);
+    }
   },
   /**
    *  Render Admin SignUp Page
@@ -115,6 +122,7 @@ module.exports = {
        *      (at their email address) 
        *         */
       invitedSignup: async function (req, res, next) {
+        try{
       var user = await User.findOne({ email: req.body.email })
       if (!user) {
       req.flash('error', 'Password reset token is invalid or has expired.');
@@ -134,6 +142,9 @@ module.exports = {
     res.render('welcome');
     //console.log("ye thisssssss");
     return (null, user);
+  }catch(error){
+    console.log(error);
+  }
   },
 /**
        * Method:ReInviteUser
@@ -146,7 +157,8 @@ module.exports = {
        *      render to the same Page
        */
   ReInviteUser: async function (req, res, next) {
-    /**
+   
+   try{ /**
      * Generating Token  */
     let token = crypto.randomBytes(32).toString('hex');
     var body = req.body;
@@ -188,7 +200,11 @@ module.exports = {
         res.redirect('/ReInviteUser');
       }
     })
+  }catch(error){
+      console.log(error);
+    }
   }
+
 }
 
 
