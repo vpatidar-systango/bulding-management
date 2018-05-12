@@ -38,6 +38,9 @@ var userSchema = mongoose.Schema({
     inviteTokenExpires: Date,
     buildingdetails:String,
 
+    buildingName:Array,
+    
+
 });
 
 /**

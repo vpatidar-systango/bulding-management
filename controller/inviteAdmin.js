@@ -58,10 +58,10 @@ module.exports = {
     var mailOptions = {
       from: process.env.sender,
       to: body.email,
-      subject: mailconfig.inviteAdmin.subject,
-      text: mailconfig.inviteAdmin.header +
+      subject: process.env.inviteAdminSubject,
+      text: process.env.inviteAdminHeader +
         'https://' + req.headers.host + '/superAdmin.inviteAdminLink/' + token + '\n\n' +
-        mailconfig.inviteAdmin.footer
+        process.env.inviteAdminfooter
     };
     //Sends the mail by using this method:    
     transporter.sendMail(mailOptions, function (error, info) {
@@ -178,18 +178,18 @@ module.exports = {
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: mailconfig.inviteAdmin.sender,
-        pass: mailconfig.inviteAdmin.pass,
+        user: process.env.sender,
+        pass: process.env.pass,
       }
     });
     const inviteToken = token;
     var mailOptions = {
-      from: mailconfig.inviteAdmin.sender,
+      from: process.env.sender,
       to: body.email,
-      subject: mailconfig.inviteAdmin.subject,
-      text: mailconfig.inviteAdmin.header +
+      subject:process.env.inviteAdminSubject,
+      text: process.env.inviteAdminSubject +
         'https://' + req.headers.host + '/inviteAdminLink/' + token + '\n\n' +
-        mailconfig.inviteAdmin.footer
+        process.env.inviteAdminfooter
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

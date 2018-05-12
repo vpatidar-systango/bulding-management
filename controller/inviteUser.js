@@ -3,6 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var User = require('../models/user');
+var Building = require('../models/building');
+
 var nodemailer = require('nodemailer');
 var bcrypt = require('bcrypt-nodejs');
 var async = require('async');
@@ -26,6 +28,16 @@ module.exports = {
     let token = crypto.randomBytes(32).toString('hex');
     //console.log(token);
     var body = req.body;
+    var Adminid=req._passport.session.user;
+    console.log("Admin Id ="+Adminid);
+
+    var building=await Building.find({Adminid:Adminid});
+   // console.log(building);
+    //console.log("building Id"+building);
+    //console.log(building.buildingname);
+
+    
+
     var user = await User.findOne({ email: req.body.email })
     /**
          * creating New User
@@ -38,19 +50,22 @@ module.exports = {
     user.status = "InActive";
     user.email = req.body.email;
     user.role = "User";
+    user.buildingName=[building];
+    
+
     /** creating a source of transport with the hel of node mailer function
          * set service as a gmail & username password
         */
     user.save(function (err) {
-      console.log(user);
+      console.log(user.buildingname);
 
     });
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: mailconfig.inviteUser.sender,
-        pass: mailconfig.inviteUser.pass,
+        user: process.env.sender,
+        pass: process.env.pass,
       }
     });
     const inviteToken = token;
@@ -58,12 +73,12 @@ module.exports = {
      * set up the MAil body
      */
     var mailOptions = {
-      from: mailconfig.inviteUser.sender,
+      from: process.env.sender,
       to: body.email,
-      subject: mailconfig.inviteUser.subject,
-      text: mailconfig.inviteUser.header +
+      subject: process.env.inviteUserSubject,
+      text: process.env.inviteUserHeader +
         'https://' + req.headers.host + '/admin.inviteUserLink/' + token + '\n\n' +
-        mailconfig.inviteUser.footer
+        process.env.inviteUserfooter
     };
     //Sends the mail by using this method:    
     transporter.sendMail(mailOptions, function (error, info) {
@@ -172,24 +187,24 @@ module.exports = {
     user.email = req.body.email;
     user.status = "InActive";
     user.role = "User";
-    console.log(user._id);
+        console.log(user._id);
     await User.findOneAndUpdate(user._id, user);
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: mailconfig.inviteUser.sender,
-        pass: 9977238425
+        user: process.env.sender,
+        pass: process.env.pass
       }
     });
     const inviteToken = token;
     var mailOptions = {
-      from: mailconfig.inviteUser.sender,
+      from: process.env.sender,
       to: body.email,
-      subject: mailconfig.inviteUser.subject,
-      text: mailconfig.inviteUser.header +
+      subject: process.env.inviteUserSubject,
+      text: process.env.inviteUserHeader +
         'https://' + req.headers.host + '/inviteLink/' + token + '\n\n' +
-        mailconfig.inviteUser.footer
+        process.env.inviteUserfooter
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

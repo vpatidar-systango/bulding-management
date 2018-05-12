@@ -20,7 +20,11 @@ router.get('/welcome', middleware.isLoggedIn, controller.rederwelcomePage);// Ro
  */
 router.get('/user.Profile', middleware.isLoggedIn,middleware.checkUser,usercontroller.UserProfile);
 router.post('/user.updateProfile', usercontroller.updateUProfile);
-
+/**
+ * Shows createIssuePage
+ * And Updates in the Post Request
+ */
+router.get('/user.createIssue', middleware.isLoggedIn,middleware.checkUser,usercontroller.rendercreateissuePage);
 
 //-------------------passport local SignUp Authentication----------
 router.post('/signup', passport.authenticate('local.signup', {

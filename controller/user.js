@@ -71,4 +71,7 @@ module.exports = {
         console.log(error);
       }
     },
+    rendercreateissuePage: function (req, res) {
+        res.render('createIssue');
+    },
 }

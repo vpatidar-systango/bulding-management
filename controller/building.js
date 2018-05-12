@@ -22,13 +22,9 @@ module.exports = {
         user.save();
         //console.log(user.buildingdetails);
 
-        var Building = await building.findOne(id);
-        if (Building) {
-            req.flash('MsgError', 'Building already exist');
-          //  console.log(Building);
-            console.log("Building Already Exist");
-            return (false)
-        }
+        var Building = await building.findOne({id});
+        
+        
         var NewBuilding = new building();
         NewBuilding.buildingname = req.body.buildingname;
         NewBuilding.Address = req.body.Address;
@@ -37,6 +33,12 @@ module.exports = {
         NewBuilding.buildingRegistred = true;
         NewBuilding.Adminid=req._passport.session.user;
       //  console.log(req._passport.session.user);
+      if (NewBuilding.Adminid==user.id) {
+        req.flash('MsgError', 'Building already exist');
+      //  console.log(Building);
+        console.log("Building Already Exist");
+        return (false)
+    }else{
         console.log(NewBuilding);
         NewBuilding.save(function (error) {
             if (error) {
@@ -45,6 +47,8 @@ module.exports = {
             res.render('buildingdetails');
             return (null, NewBuilding);
         })
+    }
+       
     }catch(error){
         console.log(error);
     }
