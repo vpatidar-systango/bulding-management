@@ -37,7 +37,7 @@ router.post('/admin.updateProfile', admincontroller.updateAProfile);
  * Shows/fillup the Building details
  * And Updates in the Post Request
  */
-router.get('/admin.buildingdetails',middleware.isLoggedIn,middleware.checkAdmin, admincontroller.renderBuildingDetails);
+router.get('/admin.buildingdetails',middleware.isLoggedIn, admincontroller.renderBuildingDetails);
 router.post('/admin.buildingdetails', buildingcontroller.buildingdetails);
 /**
  * Render the ReInvite Page with already filled data

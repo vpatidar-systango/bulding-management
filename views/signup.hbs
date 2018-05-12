@@ -16,7 +16,7 @@
       <h1>Welcome Back!</h1>
       <center>
         <h3>
-          <span id="spanError" style="color:red">{{msgError }} </span>
+          <span id="spanError" style="color:red">{{msgError}} </span>
         </h3>
       </center>
       <br>
@@ -43,18 +43,7 @@
 
           <br>
          </div>
-        {{!-- <div class="field-wrap">
-          <label>
-           confirm_password 
-            <span class="req">*</span>
-          </label>
-          <input type="password" required autocomplete="off" name="password" id="confirm_password" onkeyup="check()"/>
-          <span id="spanError" style="color:red">{{PassError}} </span>
-          <span id="message"> </span>
-
-
-          <br>
-        </div>  --}}
+        
 
 
         <button class="loginBtn loginBtn--facebook" onclick="window.location.href='/auth/facebook'">
@@ -86,20 +75,7 @@
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="/js/index.js"></script>
-   {{!-- <script>
-    var check = function () {
-      var password=document.getElementById('password').value;
-      var cpassword=document.getElementById('confirm_password').value;
-
-      if (password ==cpassword ) {
-        document.getElementById('message').style.color = 'green';
-        document.getElementById('message').innerHTML = 'matching';
-      } else {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'not matching';
-      }
-    }
-  </script>  --}}
+   
 </body>
 
 </html>

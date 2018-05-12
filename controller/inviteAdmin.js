@@ -35,6 +35,7 @@ module.exports = {
     user.inviteToken = token;//save the token in the new Admin db
     user.inviteTokenExpires = Date.now() + 3600000; // 1 hour
     user.requestsend = "Notaccept";
+    user.status = "InActive";
     user.username = req.body.username;
     user.email = req.body.email;
     user.buildingdetails = "Notfilled";
@@ -46,8 +47,8 @@ module.exports = {
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: mailconfig.inviteAdmin.sender,
-        pass: mailconfig.inviteAdmin.pass,
+        user: process.env.sender,
+        pass: process.env.pass,
       }
     });
     const inviteToken = token;
@@ -55,7 +56,7 @@ module.exports = {
      * set up the MAil body
      */
     var mailOptions = {
-      from: mailconfig.inviteAdmin.sender,
+      from: process.env.sender,
       to: body.email,
       subject: mailconfig.inviteAdmin.subject,
       text: mailconfig.inviteAdmin.header +
@@ -107,6 +108,8 @@ module.exports = {
    *   // Render Admin SignUp Page
    */
   renderinvitedAdminSignup: function (req, res) {
+    // console.log("req. is logout")
+    // req.logout();
     res.render('adminSignup');
   },
 /**
@@ -129,11 +132,12 @@ module.exports = {
     user.lastname = req.body.lname;
     user.email = req.body.email;
     user.requestsend = "accept";
+    user.status = "Active";
     user.password = user.encryptPassword(req.body.password);
 
     await User.findByIdAndUpdate(user._id, user);
 
-    res.render('welcome');
+    res.redirect('/inviteUser');
    // console.log("ye thisssssss");
 
     return (null, user);

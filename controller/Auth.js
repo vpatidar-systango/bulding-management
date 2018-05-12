@@ -88,7 +88,7 @@ passport.use('local.login', new LocalStrategy({
 }));
 //-------------------------------------------------------------------------------------
 /**
- *Local Strategy Of Passport For SignUp/Creating User
+ *Local Strategy Of Passport For SignUp/Creating Admin
  */
 passport.use('local.adminsignup', new LocalStrategy({
     usernameField: 'username',
@@ -98,24 +98,24 @@ passport.use('local.adminsignup', new LocalStrategy({
     let body = req.body;
     console.log("hii");
 
-    var admin = await User.findOne({ 'username': username })
-    if (admin) {
-        req.flash('MsgError', 'user already exist');
-        return (done, false)
-    }
-    var newadmin = new User();
-    newadmin.username = req.body.username;
-    newadmin.lastname = req.body.lname;
-    newadmin.email = req.body.email;
-    newadmin.role = "Admin";
-    newadmin.password = newadmin.encryptPassword(req.body.password);
+    // var admin = await User.findOne({ 'username': username })
+    // if (admin) {
+    //     req.flash('MsgError', 'user already exist');
+    //     return (done, false)
+    // }
+    // var newadmin = new User();
+    // newadmin.username = req.body.username;
+    // newadmin.lastname = req.body.lname;
+    // newadmin.email = req.body.email;
+    // newadmin.role = "Admin";
+    // newadmin.password = newadmin.encryptPassword(req.body.password);
 
-    console.log(newadmin);
-    newadmin.save(function (error) {
-        if (error) {
-            return done(error);
-        }
-        return done(null, newadmin);
-    })
+    // console.log(newadmin);
+    // newadmin.save(function (error) {
+    //     if (error) {
+    //         return done(error);
+    //     }
+    //     return done(null, newadmin);
+    // })
 })
 );

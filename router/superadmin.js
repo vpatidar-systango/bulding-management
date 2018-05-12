@@ -23,6 +23,13 @@ router.get('/superAdmin.inviteAdminLink/:token',inviteAdminController.InviteAdmi
  */
 router.get('/superAdmin.AdminSignup',inviteAdminController.renderinvitedAdminSignup);// Render signup form for user 
 router.post('/superAdmin.AdminSignup',inviteAdminController.invitedAdminSignup);
+
+// router.post('/signup',passport.authenticate('local.adminsignup', {
+//     successRedirect: '/admin.buildingdetails',
+//     failureRedirect: '/welcome',
+//     failureFlash: true,
+// }));
+
 /**
  * See List Of All Users Whose role is Admin
  */

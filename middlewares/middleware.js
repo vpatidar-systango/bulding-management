@@ -44,7 +44,8 @@ module.exports = {
         try {
             var id = req._passport.session.user;
             var admin = await User.findById(id);
-            console.log(admin.role);
+           // console.log(admin.id)
+;            console.log(admin.role);
             if (admin.role == "Admin") {
                 return next();
             } else {
